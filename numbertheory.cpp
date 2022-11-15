@@ -22,28 +22,21 @@ ll gcd(ll a,ll b){
     return gcd(b,a%b);
 }
 
-vector<ll> prime;
-
-// calculates prime of range l,r
-// where  r-l can be upto 1e9;
-
-vector<ll> primes(ll n){
-    //caluclating primesupton
-    vector<bool> visited(n,0);
+vector<ll> seive(){
+    vector<bool> visited(maxn,0);
     vector<ll> ans;
-    for(int i=2;i<=sqrt(n);i++){
+    ans.push_back(2);
+    for(int i=3;i<=sqrt(maxn);i+=2){
         if(!visited[i]){
-            for(int j=i*i;j<=n;j+=i){
+            ans.push_back(i);
+            for(int j=i*i;j<=maxn;j+=i){
                 visited[j]=1;
             }
         }
     }
-    FOR(i,1,n+1){
-    if(!visited[i]) ans.pb(i);
-    }
     return ans;
 }
-
+vector<ll> prime;
 vector<ll> factor(ll x){
     vector<ll> ans;
     ll y=x;
@@ -62,23 +55,17 @@ vector<ll> factor(ll x){
     }
     return ans;
 }
-ll binpow(ll a,ll b){
-    if(b==0) return 1;
-    ll res=binpow(a,b/2);
-    if(b%2) return (res%mod*res%mod*a%mod)%mod;
-    return (res%mod*res%mod)%mod;
-}
-
 
 int main(){
     cin.tie(0);
     ios::sync_with_stdio(false);
     int t=1;
     cin>>t;
+    prime=seive();
     while(t--){
-        int a,b;
+        ll a,b;
         cin>>a>>b;
-        cout<<binpow(a,b)<<endl;
+        cout<<gcd(a,b)<<endl;
     }
- }
+}
 
