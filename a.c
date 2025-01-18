@@ -15,6 +15,7 @@ using namespace std;
 #define error(args...) { string _s = #args; replace(_s.begin(), _s.end(), ',', ' '); stringstream _ss(_s); istream_iterator<string> _it(_ss); err(_it, args); }
 #define rint1(x) ll  x; cin>>x;
 #define rint2(x,y) ll  x,y; cin>>x>>y;
+#define all(v) v.begin(),v,end()
 
 
 void err(istream_iterator<string> it) {}
